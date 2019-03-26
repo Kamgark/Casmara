@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../header/header.css';
 import './footer.css';
+import {Link} from 'react-router-dom';
 class Footer extends Component{
     render(){
         return(
@@ -94,10 +95,10 @@ class Footer extends Component{
                                             <div className="modcontent"> 
                                                 <ul className="menu"> 
                                                     <li>
-                                                        <a href="my-account.html" >My Account</a>
+                                                        <Link to="/myaccount"><a>My Account</a></Link>
                                                     </li>
                                                     <li>
-                                                        <a href="login.html">Login</a>
+                                                    <Link to="/login"><a>Login</a></Link>
                                                     </li>                                                     
                                                     <li>
                                                         <a href="specials.html" >Specials</a>

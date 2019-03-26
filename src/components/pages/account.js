@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import Layout from '../layout';
-import Login from '../login';
+import Account from '../account';
 
-class LoginPage extends Component {
+class AccountPage extends Component {
   render() {
     return (
       <Layout>
-        <Login/>
+          <Account/>
       </Layout>
     );
   }
 }
 
-export default LoginPage;
+export default AccountPage;
