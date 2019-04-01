@@ -15,6 +15,7 @@ class Register extends Component {
           password1:''
         };
       }
+      
       handleChange(e) {
         this.setState({ [e.target.name]: e.target.value});
       }
@@ -28,6 +29,8 @@ class Register extends Component {
           })
       }
     render() {
+        let {firstname, lastname,password,password1}= this.state
+        console.log("user data",firstname, lastname,password,password1)
       return (
         <div className="content-main" style={{marginTop: "75px", marginBottom: "75px"}}> 
                 <div className="main-container container">
@@ -57,13 +60,13 @@ class Register extends Component {
                                                             <div className="form-group required"> 
                                                                 <label className="col-sm-2 control-label" for="input-firstname">First Name</label>                                                                 
                                                                 <div className="col-sm-10"> 
-                                                                    <input value={this.state.tempname} onChange={this.handleChange} type="text" name="firstname" placeholder="First Name" id="input-firstname" className="form-control"/> 
+                                                                    <input value={this.state.firstname} onChange={this.handleChange} type="text" name="firstname" placeholder="First Name" id="input-firstname" className="form-control"/> 
                                                                 </div>                                                                 
                                                             </div>                                                             
                                                             <div className="form-group required"> 
                                                                 <label className="col-sm-2 control-label" for="input-lastname">Last Name</label>                                                                 
                                                                 <div className="col-sm-10"> 
-                                                                    <input value={this.state.tempname} onChange={this.handleChange} type="text" name="lastname" placeholder="Last Name" id="input-lastname" className="form-control"/> 
+                                                                    <input value={this.state.lastname} onChange={this.handleChange} type="text" name="lastname" placeholder="Last Name" id="input-lastname" className="form-control"/> 
                                                                 </div>                                                                 
                                                             </div>                                                             
                                                             <div className="form-group required"> 
@@ -75,7 +78,7 @@ class Register extends Component {
                                                             <div className="form-group required"> 
                                                                 <label className="col-sm-2 control-label" for="input-telephone">Telephone</label>                                                                 
                                                                 <div className="col-sm-10"> 
-                                                                    <input value={this.state.tempname} onChange={this.handleChange} type="number" name="telephone" placeholder="Telephone" id="input-telephone" className="form-control"/> 
+                                                                    <input value={this.state.telephone} onChange={this.handleChange} type="number" name="telephone" placeholder="Telephone" id="input-telephone" className="form-control"/> 
                                                                 </div>                                                                 
                                                             </div>                                                                                                                          
                                                         </fieldset>                                                                                                                  
@@ -84,7 +87,7 @@ class Register extends Component {
                                                             <div className="form-group required"> 
                                                                 <label className="col-sm-2 control-label" for="input-password">Password</label>                                                                 
                                                                 <div className="col-sm-10"> 
-                                                                    <input value={this.state.tempname} onChange={this.handleChange} type="password" name="password1" placeholder="Password" id="input-password" className="form-control"/> 
+                                                                    <input value={this.state.password1} onChange={this.handleChange} type="password" name="password1" placeholder="Password" id="input-password" className="form-control"/> 
                                                                 </div>                                                                 
                                                             </div>                                                             
                                                             <div className="form-group required"> 

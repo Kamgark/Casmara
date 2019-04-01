@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../header/header.css';
+import {Link} from 'react-router-dom';
 import fire from '../../config/fire';
 class Login extends Component{
     constructor(props) {
@@ -46,7 +47,7 @@ class Login extends Component{
                                                                         <p style={{fontFamily: "Montserrat", fontSize: "16px"}}>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p> 
                                                                     </div>                                                                     
                                                                     <div className="bottom-form"> 
-                                                                        <a href="#" className="btn btn-default pull-right" style={{fontFamily: "Montserrat"}}>Continue</a> 
+                                                                        <Link to="/register"><a className="btn btn-default pull-right" style={{fontFamily: "Montserrat"}}>Continue</a></Link> 
                                                                     </div>                                                                     
                                                                 </div>                                                                 
                                                                 <form action="#" method="post" encType="multipart/form-data" id="formm" role="form"> 

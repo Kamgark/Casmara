@@ -7460,7 +7460,7 @@ ul.yt-accordion li.accordion-group h3.accordion-heading:hover .fa {
 
 .content-main .so-spotlight2 {
     padding: 12px 0;
-    margin: 0 -7.5px;
+    /* margin: 0 -7.5px; */
     display: block;
     overflow: hidden;
 }

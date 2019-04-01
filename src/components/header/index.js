@@ -1,8 +1,47 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import './header.css';
+import fire from '../../config/fire';
 class Header extends Component{
+    constructor() {
+        super();
+        this.state = ({
+          user: null,
+        });
+        this.authListener = this.authListener.bind(this);
+        this.logout = this.logout.bind(this);
+      }
+    
+      componentDidMount() {
+        this.authListener();
+      }
+      logout() {
+		fire.auth().signOut();
+        }
+      authListener() {
+        fire.auth().onAuthStateChanged((user) => {
+          if (user) {
+            this.setState({ user });
+            // localStorage.setItem('user', user.uid);
+          } else {
+            this.setState({ user: null });
+            // localStorage.removeItem('user');
+          }
+        });
+        
+      } 
+      removeFromCart(index){
+        let {dispatch , cart}= this.props;
+        let carts= [...cart];
+        carts.splice(index,1)
+        dispatch({
+            type:'cart',
+            payLoad: carts
+        })
+    }
     render(){
+        let {cart}= this.props;	
+        let carts=[...cart];
         return(
             <header id="header" className=" variantleft type_5 ">                
                 <div className="header-top"> 
@@ -31,15 +70,29 @@ class Header extends Component{
                                 </a> </Link>                 
                             </div>                             
                             <div className="header-top-right collapsed-block   col-sm-5 col-xs-6 compact-hidden text-right"> 
-                                <div> 
-                                    <ul className="top-link list-inline"> 
+                                <div> {
+                                    this.state.user?(<ul className="top-link list-inline"> 
+                                    <li className="checkout">
+                                   <Link to="/wishlist"><a classNameName="top-link-checkout" title="Wish List"><span >Wish List</span></a></Link>
+                               </li> 
+                               <li classNameName="login">
+                                   <Link to="/compare"><a title="Compare List"><span>Compare</span></a></Link>
+                               </li>
+                               <li className="checkout">
+                                   <Link to="/myaccount"><a classNameName="top-link-checkout" title="My Account"><span >My Account</span></a></Link>
+                               </li>
+                                   <li className="checkout">
+                                   <Link to="/login"><a classNameName="top-link-checkout" title="Logout" onClick={this.logout}><span >Logout</span></a></Link>
+                               </li>                                                                                 
+                               </ul> ):(<ul className="top-link list-inline"> 
                                         <li className="checkout">
-                                            <Link to="/login"><a classNameName="top-link-checkout" title="Login"><span >Login</span></a></Link>
-                                        </li>                                         
-                                        <li classNameName="login">
-                                            <Link to="/register"><a title="Register"><span>Register</span></a></Link>
-                                        </li>                                         
-                                    </ul>                                     
+                                        <Link to="/login"><a classNameName="top-link-checkout" title="Login"><span >Login</span></a></Link>
+                                    </li>                                         
+                                    <li classNameName="login">
+                                        <Link to="/register"><a title="Register"><span>Register</span></a></Link>
+                                    </li>                                        
+                                    </ul> )
+                                }                                    
                                 </div>                                 
                             </div>                             
                         </div>                         
@@ -66,7 +119,7 @@ class Header extends Component{
                                                         <ul className="megamenu " data-transition="slide" data-animationtime="250"> 
                                                             <li className="home hove"> 
                                                                 <p className="close-menu"></p> 
-                                                                <a href="index.html" className="menu1 first-a">Home</a> 
+                                                                <Link to="/"><a className="menu1 first-a">Home</a></Link> 
                                                                 <div className="sub-menu sub-menu-1"> 
                                                                     <div className="content" > 
                                                                         <div className="row"> 
@@ -455,49 +508,36 @@ class Header extends Component{
                                         <a data-loading-text="Loading..." className="top_cart dropdown-toggle" data-toggle="dropdown"> 
                                             <div className="shopcart"> 
                                                 <span className="handle pull-left"></span> 
-                                                <span className="number-shopping-cart">2</span> 
+                                                <span className="number-shopping-cart">{carts.length}</span> 
                                             </div>                                             
                                         </a>                                         
                                         <ul className="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu"> 
                                             <li> 
                                                 <table className="table table-striped"> 
                                                     <tbody> 
+                                                    { carts && carts.map((item,index)=>{
+                                                        return(
                                                         <tr> 
                                                             <td className="text-center col1"> 
                                                                 <a href="product.html"> 
-                                                                    <img src={require("../../images/demo/shop/product/35.jpg")} alt="Filet Mign" title="Filet Mign" className="preview"/> 
+                                                                    <img src={require("../../images/demo/shop/product/"+ item.imageUrl)} alt="Filet Mign" title="Filet Mign" className="preview"/> 
                                                                 </a>                                                                 
                                                             </td>                                                             
                                                             <td className="text-left"> 
-                                                                <a className="cart_product_name" href="product.html">Filet Mign</a> 
+                                                                <a className="cart_product_name" href="product.html">{item.name}</a> 
                                                             </td>                                                             
-                                                            <td className="text-center"> x1 </td> 
-                                                            <td className="text-center"> $1,202.00 </td> 
+                                                            <td className="text-center">{item.quantity}</td> 
+                                                            <td className="text-center"> {item.price} </td> 
                                                             <td className="text-right"> 
                                                                 <a href="product.html" className="fa fa-edit"/> 
                                                             </td>                                                             
                                                             <td className="text-right"> 
-                                                                <a onclick="cart.remove('2');" className="fa fa-times fa-delete"/> 
+                                                                <a onClick={()=>{this.removeFromCart(index)}} className="fa fa-times fa-delete"/> 
                                                             </td>                                                             
-                                                        </tr>                                                         
-                                                        <tr> 
-                                                            <td className="text-center col2"> 
-                                                                <a href="product.html"> 
-                                                                    <img src={require("../../images/demo/shop/product/141.jpg")} alt="Canon EOS 5D" title="Canon EOS 5D" className="preview"/> 
-                                                                </a>                                                                 
-                                                            </td>                                                             
-                                                            <td className="text-left"> 
-                                                                <a className="cart_product_name" href="product.html">Canon EOS 5D</a> 
-                                                            </td>                                                             
-                                                            <td className="text-center"> x1 </td> 
-                                                            <td className="text-center"> $60.00 </td> 
-                                                            <td className="text-right"> 
-                                                                <a href="product.html" className="fa fa-edit"/> 
-                                                            </td>                                                             
-                                                            <td className="text-right"> 
-                                                                <a onclick="cart.remove('1');" className="fa fa-times fa-delete"/> 
-                                                            </td>                                                             
-                                                        </tr>                                                         
+                                                        </tr>  
+                                                        )
+                                                    })                                                       
+                                                    }                                                         
                                                     </tbody>                                                     
                                                 </table>                                                 
                                             </li>                                             
@@ -523,7 +563,7 @@ class Header extends Component{
                                                             </tr>                                                             
                                                         </tbody>                                                         
                                                     </table>                                                     
-                                                    <p className="text-right"> <a className="btn view-cart" href="cart.html"><i className="fa fa-shopping-cart"/>View Cart</a>&nbsp;&nbsp;&nbsp; <a className="btn btn-mega checkout-cart" href="checkout.html"><i className="fa fa-share"/>Checkout</a> </p> 
+                                                    <p className="text-right"><Link to="/cart"> <a className="btn view-cart"><i className="fa fa-shopping-cart"/>View Cart</a></Link>&nbsp;&nbsp;&nbsp;<Link to="/checkout"> <a className="btn btn-mega checkout-cart"><i className="fa fa-share"/>Checkout</a></Link> </p> 
                                                 </div>                                                 
                                             </li>                                             
                                         </ul>                                         

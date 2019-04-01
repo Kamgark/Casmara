@@ -1,0 +1,70 @@
+{
+    "product":[
+        {
+            "id":1,
+            "image":"banner-1.jpg",
+            "versions":[
+                {
+                    "name":"Lorem ",
+                    "imageUrl":"E4.jpg",
+                    "price":"$93",
+                    "availability":"In Stock",
+                    "model":"Pt 001",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                },
+                {
+                    "name":"Lorem ipsum",
+                    "imageUrl":"E4.jpg",
+                    "price":"$103",
+                    "availability":"In Stock",
+                    "model":"Pt 002",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                },
+                {
+                    "name":"Lorem ipsum dolor",
+                    "imageUrl":"E4.jpg",
+                    "price":"$123",
+                    "availability":"Pre-Order",
+                    "model":"Pt 003",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                }
+            ]
+        },
+        {
+            "id":2,
+            "image":"banner-2.jpg",
+            "versions":[
+                {
+                    "name":"Lorem ",
+                    "imageUrl":"E3.jpg",
+                    "price":"$93",
+                    "availability":"In Stock",
+                    "model":"Pt 001",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                },
+                {
+                    "name":"Lorem ipsum",
+                    "imageUrl":"E3.jpg",
+                    "price":"$103",
+                    "availability":"In Stock",
+                    "model":"Pt 002",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                },
+                {
+                    "name":"Lorem ipsum dolor",
+                    "imageUrl":"E3.jpg",
+                    "price":"$123",
+                    "availability":"Pre-Order",
+                    "model":"Pt 003",
+                    "quantity":1,
+                    "summary":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.."
+                }
+            ]
+        }
+    ]
+}
